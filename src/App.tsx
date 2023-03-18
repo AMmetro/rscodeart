@@ -28,8 +28,8 @@ class App extends Component {
           alignItems: 'center',
         }}
       >
+        <h1>learn react</h1>
         <Header />
-
         <Routing />
       </div>
     );

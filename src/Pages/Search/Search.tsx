@@ -11,18 +11,21 @@ type MyState = {
   isSearched: boolean;
 };
 
+const pictureLink =
+  'https://mobimg.b-cdn.net/v3/fetch/7e/7e84d5b2dbce7be2c1449f147855ab35.jpeg?w=1470&r=0.5625';
+
 const cards = [
-  { id: 1, name: 'ВЭБ РФ', value: 'value1' },
-  { id: 2, name: 'ВЭБ РФ', value: 'value2' },
-  { id: 3, name: 'ВЭБ РФ', value: 'value3' },
-  { id: 5, name: 'ВЭБ РФ', value: 'value4' },
-  { id: 6, name: 'ВЭБ РФ', value: 'value4' },
-  { id: 7, name: 'ВЭБ РФ', value: 'value4' },
-  { id: 8, name: 'ВЭБ РФ', value: 'value4' },
-  { id: 9, name: 'ВЭБ РФ', value: 'value4' },
-  { id: 10, name: 'ВЭБ РФ', value: 'value4' },
-  { id: 11, name: 'ВЭБ РФ', value: 'value4' },
-  { id: 12, name: 'ВЭБ РФ', value: 'value4' },
+  { id: 1, name: 'name1', value: 'value1' },
+  { id: 2, name: 'name2', value: 'value2' },
+  { id: 3, name: 'name3', value: 'value3' },
+  { id: 5, name: 'name4', value: 'value4' },
+  { id: 6, name: 'name5', value: 'value4' },
+  { id: 7, name: 'name6', value: 'value4' },
+  { id: 8, name: 'name7', value: 'value4' },
+  { id: 9, name: 'name8', value: 'value4' },
+  { id: 10, name: 'name9', value: 'value4' },
+  { id: 11, name: 'name10', value: 'value4' },
+  { id: 12, name: 'name11', value: 'value4' },
 ];
 
 class Search extends Component<MyProps, MyState> {
@@ -110,19 +113,32 @@ class Search extends Component<MyProps, MyState> {
         </div>
 
         <div style={{ display: 'flex', flexWrap: 'wrap', width: '50%' }}>
-          {cards.map((card) => {
+          {cards.map((card, i) => {
             return (
               <div
                 key={card.id}
                 style={{
                   margin: '10px',
-                  width: '150px',
-                  height: '50px',
+                  backgroundColor: 'gray',
+                  width: '250px',
+                  height: '250px',
                   border: '1px solid blue',
                   borderRadius: '10%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around',
+                  alignItems: 'center',
                 }}
               >
-                {card.name}
+                <>
+                  <div>card number {i + 1}</div>
+                  <div>card name {card.name}</div>
+                  <img src={pictureLink} style={{ width: '100%' }} />
+                  {/* <div
+                    style={{ backgroundImage: `url(${pictureLink})`, width: '100%', height: '80%' }}
+                  ></div> */}
+                  <div>hello</div>
+                </>
               </div>
             );
           })}
