@@ -1,16 +1,15 @@
 {
   "files": {
     "main.css": "/rscodeart/static/css/main.073c9b0a.css",
-    "main.js": "/rscodeart/static/js/main.8d850d15.js",
+    "main.js": "/rscodeart/static/js/main.187f0c3c.js",
     "static/js/787.18a78430.chunk.js": "/rscodeart/static/js/787.18a78430.chunk.js",
-    "static/media/logo.svg": "/rscodeart/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/rscodeart/index.html",
     "main.073c9b0a.css.map": "/rscodeart/static/css/main.073c9b0a.css.map",
-    "main.8d850d15.js.map": "/rscodeart/static/js/main.8d850d15.js.map",
+    "main.187f0c3c.js.map": "/rscodeart/static/js/main.187f0c3c.js.map",
     "787.18a78430.chunk.js.map": "/rscodeart/static/js/787.18a78430.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.8d850d15.js"
+    "static/js/main.187f0c3c.js"
   ]
 }
