@@ -1,9 +1,16 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import Search from 'Pages/Search/Search';
 
-test('renders react App page', () => {
+test('renders App page', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+  const linkElement = screen.getByText(/Default page/i);
+  expect(linkElement).toBeInTheDocument();
+});
+
+test('renders Current page', () => {
+  render(<Search />);
+  const linkElement = screen.getByText(/component is rendered/i);
   expect(linkElement).toBeInTheDocument();
 });

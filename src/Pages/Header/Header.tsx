@@ -1,33 +1,29 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-const headerMenu = ['search', 'cards', 'about'];
+const headerMenu = ['search', 'about'];
 
-type MyProps = {
-  // using `interface` is also ok
-  // message: string;
-};
-type MyState = { count: number };
+interface Props {}
+interface State {
+  status: number;
+}
 
-class Header extends Component<MyProps, MyState> {
-  state: MyState = { count: 50 };
-
-  componentDidUpdate(prevProps: any) {
-    // Популярный пример (не забудьте сравнить пропсы):
-    console.log('componentDidUpdate');
-
-    if (this.props === prevProps) {
-    }
-  }
+class Header extends Component<Props, State> {
+  state: State = { status: 0 };
 
   render() {
-    console.log('==========rerender===');
+    let currentPage = '';
 
-    const testa = () => {
-      this.setState({ count: 2 });
-    };
-
-    // console.log(window.location.pathname)
-    // console.log(window.location.href)
+    switch (window.location.pathname) {
+      case '/search':
+        currentPage = 'search';
+        break;
+      case '/about':
+        currentPage = 'about';
+        break;
+      default:
+        currentPage = '404';
+    }
 
     return (
       <div
@@ -36,28 +32,28 @@ class Header extends Component<MyProps, MyState> {
           width: '100%',
           display: 'flex',
           justifyContent: 'space-around',
-          position: 'absolute',
+          position: 'fixed',
           top: '0px',
           height: '30px',
           alignItems: 'center',
         }}
       >
-        <div
-          style={{
-            backgroundColor: 'yellow',
-            display: 'flex',
-            height: '70%',
-            borderRadius: '20px',
-            width: '20%',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          {window.location.pathname}
+        <div style={{ width: '40%', display: 'flex' }}>
+          <span style={{ marginRight: '10px' }}>Current page:</span>
+          <div
+            style={{
+              backgroundColor: 'yellow',
+              display: 'flex',
+              height: '70%',
+              borderRadius: '20px',
+              width: '75px',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            {currentPage}
+          </div>
         </div>
-
-        <button onClick={testa}>test</button>
-
         <div
           style={{
             display: 'flex',
@@ -67,7 +63,7 @@ class Header extends Component<MyProps, MyState> {
           {headerMenu.map((el, i) => (
             <Link
               onClick={() => {
-                testa();
+                this.setState({ status: 0 });
               }}
               key={i}
               to={`/${el}`}

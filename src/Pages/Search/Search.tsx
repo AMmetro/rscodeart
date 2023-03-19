@@ -1,15 +1,7 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+/* eslint-disable @typescript-eslint/ban-types */
+import React, { Component, createRef } from 'react';
 import searchLogo from './searchLogo.svg';
 import Img from './webLogo.svg';
-
-type MyProps = any;
-//  {
-//   message: string;
-// };
-type MyState = {
-  isSearched: boolean;
-};
 
 const pictureLink =
   'https://mobimg.b-cdn.net/v3/fetch/7e/7e84d5b2dbce7be2c1449f147855ab35.jpeg?w=1470&r=0.5625';
@@ -28,54 +20,98 @@ const cards = [
   { id: 12, name: 'name11', value: 'value4' },
 ];
 
-class Search extends Component<MyProps, MyState> {
-  textInput: any;
-  isSearchedStyle: any;
-  isNotSearchedStyle: any;
+type Props = {};
 
-  constructor(props: MyProps) {
-    super(props);
+type FlexDirection =
+  | 'column'
+  | 'inherit'
+  | '-moz-initial'
+  | 'initial'
+  | 'revert'
+  | 'unset'
+  | 'column-reverse'
+  | 'row'
+  | 'row-reverse'
+  | undefined;
 
-    this.textInput = React.createRef();
+type State = {
+  isSearched: boolean;
+  inputValue: string | null;
+};
 
-    this.state = {
-      isSearched: false,
-    };
+class Search extends Component<Props, State> {
+  isNotSearchedStyle!: {
+    width: string;
+    height: string;
+    backgroundImage: string;
+    display: string;
+    flexDirection: FlexDirection | undefined;
+    justifyContent: string;
+    alignItems: string;
+  };
+  isSearchedStyle!: {
+    width: string;
+    height: string;
+    display: string;
+    flexDirection: FlexDirection | undefined;
+    justifyContent: string;
+    alignItems: string;
+  };
+
+  textInput = createRef<HTMLInputElement>();
+  state = {
+    isSearched: false,
+    inputValue: 'enter search value',
+  };
+
+  UNSAFE_componentWillMount() {
+    this.restoreState();
   }
 
-  myRef = React.createRef();
+  componentWillUnmount() {
+    if (this.textInput.current) localStorage.setItem('inputValue', this.textInput.current.value);
+  }
+
+  goSearch = () => {
+    this.setState(() => {
+      return { isSearched: true };
+    });
+  };
+
+  restoreState = () => {
+    let newState;
+    const searchedValue = localStorage.getItem('inputValue');
+    if (searchedValue != null) {
+      newState = { isSearched: this.state.isSearched, inputValue: searchedValue };
+      this.setState(newState);
+    }
+  };
 
   render() {
-    this.isSearchedStyle = {
-      width: '200vw',
-      height: '200vh',
+    this.isNotSearchedStyle = {
+      width: '100vw',
+      height: '100vh',
       backgroundImage: `url(${Img})`,
       display: 'flex',
       flexDirection: 'column',
-      justifyContent: 'center',
+      justifyContent: 'start',
       alignItems: 'center',
     };
-
-    this.isNotSearchedStyle = {
-      width: '200vw',
-      height: '200vh',
+    this.isSearchedStyle = {
+      width: '100vw',
+      height: '190vh',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'start',
       alignItems: 'center',
     };
 
-    const goSearch = () => {
-      this.setState(() => {
-        return { isSearched: !this.state.isSearched };
-      });
-    };
-
     return (
-      <div style={this.state.isSearched ? this.isNotSearchedStyle : this.isSearchedStyle}>
+      <div style={this.state.isSearched ? this.isSearchedStyle : this.isNotSearchedStyle}>
+        <span>component is rendered</span>
         <div
           style={{
-            margin: '50px',
+            margin: '30px 50px 0px 50px',
             width: '350px',
             height: '30px',
             border: '2px solid #6b9ded',
@@ -87,8 +123,8 @@ class Search extends Component<MyProps, MyState> {
           <img src={searchLogo} alt="search" style={{ marginTop: '3px', marginLeft: '20px' }} />
           <input
             type="text"
+            defaultValue={this.state.inputValue ?? 'default'}
             ref={this.textInput}
-            // value="search input"
             style={{
               border: '0 solid white',
               marginTop: '2px',
@@ -103,84 +139,49 @@ class Search extends Component<MyProps, MyState> {
               border: '0 solid white',
               backgroundColor: '#6b9ded',
               marginTop: '0px',
-              marginLeft: '90px',
+              marginLeft: '85px',
               outline: 'none',
               borderRadius: '30px',
               cursor: 'pointer',
             }}
-            onClick={() => goSearch()}
+            onClick={this.goSearch}
           />
         </div>
-
-        <div style={{ display: 'flex', flexWrap: 'wrap', width: '50%' }}>
-          {cards.map((card, i) => {
-            return (
-              <div
-                key={card.id}
-                style={{
-                  margin: '10px',
-                  backgroundColor: 'gray',
-                  width: '250px',
-                  height: '250px',
-                  border: '1px solid blue',
-                  borderRadius: '10%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-around',
-                  alignItems: 'center',
-                }}
-              >
-                <>
-                  <div>card number {i + 1}</div>
-                  <div>card name {card.name}</div>
-                  <img src={pictureLink} style={{ width: '100%' }} />
-                  {/* <div
-                    style={{ backgroundImage: `url(${pictureLink})`, width: '100%', height: '80%' }}
-                  ></div> */}
-                  <div>hello</div>
-                </>
-              </div>
-            );
-          })}
-        </div>
+        {this.state.isSearched ? (
+          <div style={{ display: 'flex', flexWrap: 'wrap', width: '50%' }}>
+            {cards.map((card, i) => {
+              return (
+                <div
+                  key={card.id}
+                  style={{
+                    margin: '10px',
+                    backgroundColor: 'gray',
+                    width: '250px',
+                    height: '250px',
+                    border: '1px solid blue',
+                    borderRadius: '10%',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                  }}
+                >
+                  <>
+                    <div>card number {i + 1}</div>
+                    <div>card name {card.name}</div>
+                    <img src={pictureLink} style={{ width: '100%' }} />
+                    <div>hello</div>
+                  </>
+                </div>
+              );
+            })}
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     );
   }
 }
 
 export default Search;
-
-// class Search extends React.Component {
-//   textInput: any;
-//   constructor(props:any) {
-//     super(props);
-//     // создадим реф в поле `textInput` для хранения DOM-элемента
-//     this.textInput = React.createRef();
-//     this.focusTextInput = this.focusTextInput.bind(this);
-//   }
-
-//   focusTextInput() {
-//     // Установим фокус на текстовое поле с помощью чистого DOM API
-//     // Примечание: обращаемся к "current", чтобы получить DOM-узел
-//     this.textInput.current.focus();
-//   }
-
-//   render() {
-//     // описываем, что мы хотим связать реф <input>
-//     // с `textInput` созданным в конструкторе
-//     return (
-//       <div>
-//         <input
-//           type="text"
-//           ref={this.textInput} />
-//         <input
-//           type="button"
-//           value="Фокус на текстовом поле"
-//           onClick={this.focusTextInput}
-//         />
-//       </div>
-//     );
-//   }
-// }
-
-// export default Search;
