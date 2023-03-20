@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './App.css';
 
 export function mathfunc(a: number, b: number) {
@@ -9,17 +10,8 @@ export function mathfunc(a: number, b: number) {
 class App extends Component {
   render() {
     return (
-      <div
-        style={{
-          width: '100vw',
-          height: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        Default page
+      <div>
+        <>Default page</>
       </div>
     );
   }

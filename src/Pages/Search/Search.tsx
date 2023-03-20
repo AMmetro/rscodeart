@@ -108,7 +108,7 @@ class Search extends Component<Props, State> {
 
     return (
       <div style={this.state.isSearched ? this.isSearchedStyle : this.isNotSearchedStyle}>
-        <span>component is rendered</span>
+        <span>Search page</span>
         <div
           style={{
             margin: '30px 50px 0px 50px',
@@ -125,6 +125,7 @@ class Search extends Component<Props, State> {
             type="text"
             defaultValue={this.state.inputValue ?? 'default'}
             ref={this.textInput}
+            placeholder="enter search value"
             style={{
               border: '0 solid white',
               marginTop: '2px',

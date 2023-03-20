@@ -11,6 +11,6 @@ test('renders App page', () => {
 
 test('renders Current page', () => {
   render(<Search />);
-  const linkElement = screen.getByText(/component is rendered/i);
+  const linkElement = screen.getByText(/Search page/i);
   expect(linkElement).toBeInTheDocument();
 });
