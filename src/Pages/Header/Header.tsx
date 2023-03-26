@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-const headerMenu = ['search', 'about'];
+const headerMenu = ['search', 'form', 'about'];
 
 interface Props {}
 interface State {
@@ -21,6 +21,9 @@ class Header extends Component<Props, State> {
       case '/about':
         currentPage = 'about';
         break;
+      case '/form':
+        currentPage = 'form';
+        break;
       default:
         currentPage = '404';
     }
@@ -28,7 +31,7 @@ class Header extends Component<Props, State> {
     return (
       <div
         style={{
-          backgroundColor: '#6b9ded',
+          backgroundColor: '#a7c3ec',
           width: '100%',
           display: 'flex',
           justifyContent: 'space-around',

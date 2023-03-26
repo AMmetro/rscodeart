@@ -1,0 +1,37 @@
+.searchLineWrapper {
+    background-color: #a7c3ec;
+    display: flex;
+    justify-content: center;
+}
+
+.searchLine {
+    margin: 20px 30px 20px 30px;
+    width: 350px;
+    height: 30px;
+    border: 2px solid #6b9ded;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+}
+
+.searchLogo {
+    margin-top: 3px;
+    margin-left: 20px;
+}
+
+.searchInput {
+    border: 0 solid white;
+    margin-top: 2px;
+    margin-left: 20px;
+    outline: none;
+}
+
+.searchButton {
+    border: 0 solid white;
+    background-color: #6b9ded;
+    margin-left: 85px;
+    outline: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+

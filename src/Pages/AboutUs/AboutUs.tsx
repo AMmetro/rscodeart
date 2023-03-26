@@ -7,14 +7,15 @@ class AboutUs extends Component {
         style={{
           width: '100vw',
           height: '100vh',
-          backgroundColor: 'gray',
+          backgroundColor: '#bcd4f7',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
+          justifyContent: 'space-evenly',
           alignItems: 'center',
         }}
       >
         <h1>Information About Us</h1>
+        <div style={{ width: '50%', border: '1px solid red' }}></div>
       </div>
     );
   }

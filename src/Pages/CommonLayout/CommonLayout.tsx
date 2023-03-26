@@ -8,7 +8,6 @@ class CommonLayout extends Component {
     return (
       <>
         <Header />
-
         <main>
           <Outlet />
         </main>

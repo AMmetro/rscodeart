@@ -1,0 +1,13 @@
+.cardsWrapper {
+    display: flex;
+     width: 90%;
+    flex-direction: column;
+}
+
+.cardsContainer {
+    background-color: #a7c3ec;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+

@@ -1,0 +1,7 @@
+.searchWrapper {
+    background-color: #a7c3ec;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
